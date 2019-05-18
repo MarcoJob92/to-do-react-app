@@ -1,20 +1,20 @@
 import React from 'react';
 
 function Button(props) {
-  const onClick = props.onClick;
-  return(
-    <button onClick={onClick}
-    		    className={`btn btn-outline-primary ${props.text}`}>
-      { props.text }
-    </button>
-  )
+    const onClick = props.onClick;
+    return(
+        <button onClick={onClick}
+    		className={`btn btn-outline-primary ${props.text}`}>
+            { props.text }
+        </button>
+    )
 }
 
 function Buttons (props) {
-	const step = props.step,
-		    isUpdated = props.isUpdated;
-	const [nextStep, goToViewPage, prevStep, saveTask] = props.events;
-	let buttons = [];
+    const step = props.step,
+          isUpdated = props.isUpdated;
+    const [nextStep, goToViewPage, prevStep, saveTask] = props.events;
+    let buttons = [];
     if (step === 1 || step === 2) {
       buttons.push([ 'Next', nextStep ]);
       if (isUpdated === true){
