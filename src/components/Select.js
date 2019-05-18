@@ -3,7 +3,7 @@ import React from 'react';
 export default function Select(props) {
   	return(
 	  	<select name={props.name} 
-	  	        value={props.assigned}
+	  	        value={props.value}
 	            onChange={props.onChange}
 	            className="form-control">
 	        
