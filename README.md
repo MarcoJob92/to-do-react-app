@@ -2,7 +2,7 @@ This is a simple To-Do list Application done using React.
 
 ## Getting started
 
-To get this Front-end running locally:
+To get this Front-end App running locally:
 
 - Clone this repo
 - `npm install` to install all required dependencies
