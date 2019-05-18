@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './components/Button';
+import { Button } from './components/Button';
 import Select from './components/Select';
 
 function WelcomePage(props) {
@@ -7,7 +7,8 @@ function WelcomePage(props) {
     <div id="welcome-page">
       <h3>Welcome to <b>My ToDo</b> App.</h3>
       <p>Click on the button below to get started!</p>
-      {props.children}
+      <Button text="Create a new task" 
+              onClick={props.start} />
     </div>
   );
 }
@@ -104,7 +105,14 @@ function ListView(props){
       </div>
     </div>
   );
-  return list;
+
+  return(
+    <div id="view">
+      {list}
+      <Button text="Create a new task" 
+              onClick={props.newTask} />
+    </div>
+  )
 }
 
 
