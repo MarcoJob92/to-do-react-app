@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WelcomePage, Form1, Form2, ListView, Summary } from './Views';
-import Button from './components/Button';
+import { Buttons } from './components/Button';
+import Alert from './components/Alert';
 
 function App (props) {
   // Hooks
@@ -76,47 +77,10 @@ function App (props) {
     setShowAlert(false);
   }
 
-  const buttons = () => {
-    let buttons = [];
-    if (step === 1 || step === 2) {
-      buttons.push([ 'Next', nextStep ]);
-      if (isUpdated === true){
-        buttons.push([ 'Cancel', goToViewPage ]);
-      }
-    }
-    if (step === 2 || step === 3){
-      buttons.push([ 'Prev', prevStep ]);
-    }
-    if (step === 3){
-      buttons.push([ 'Save', saveTask ]);
-    }
-    
-    return(
-      <div className="div-buttons"> 
-        { buttons.map(btn =>
-          <Button text={btn[0]} onClick={btn[1]} key={btn[0]} />
-        )}
-      </div> 
-    )
-  }
-
-  const alert = () => {
-    if (showAlert){
-      return(
-        <div className="alert alert-primary" role="alert">
-          All inputs needed!
-        </div>
-      );
-    }
-    return null;
-  }
-
   return (
       <>
         {step === 0 &&
-          <WelcomePage>
-            <Button text="Create a new task" onClick={() => setStep(1)} />
-          </WelcomePage>
+          <WelcomePage start={() => setStep(1)} />
         }
         {step === 1 &&
           <Form1 task={task}
@@ -130,15 +94,15 @@ function App (props) {
           <Summary task={task} />
         }
         {step === 4 &&
-          <div id="view">
-              <ListView list={toDoList}
-                        onClick={updateTask} />
-              <Button text="Create a new task" onClick={() => setStep(1)} />
-            </div>
+          <ListView list={toDoList}
+                    onClick={updateTask}
+                    newTask={() => setStep(1)} />
         }
 
-        { buttons() }
-        { alert() }
+        <Buttons step={step}
+                 isUpdated={isUpdated}
+                 events={[nextStep, goToViewPage, prevStep, saveTask]} />
+        <Alert showAlert={showAlert} />
       </>
   );
 }
